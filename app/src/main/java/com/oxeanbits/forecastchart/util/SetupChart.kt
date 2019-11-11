@@ -15,8 +15,30 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import java.text.SimpleDateFormat
 import com.oxeanbits.forecastchart.R
 import com.oxeanbits.forecastchart.ui.marker.ForecastMarkerView
+import com.oxeanbits.forecastchart.model.LineDataCreator
 
 object SetupChart{
+
+    fun setupForecastChart(context: Context, combinedChart: CombinedChart, l1: LineDataCreator, l2: LineDataCreator) {
+        val actual = setupLineDataSet(l1.values, l1.label, l1.color)
+        val production = setupLineDataSet(l2.values, l2.label, l2.color)
+        val endDateArray = arrayListOf(BarEntry(l2.values.get(l2.values.size-1).x, l2.values.get(l2.values.size-1).y))
+        val endDate = setupEndBarDataSet(endDateArray, "End Date", Color.RED)
+
+        val lineData = LineData()
+        lineData.addDataSet(actual)
+        lineData.addDataSet(production)
+
+        val barData = BarData()
+        barData.addDataSet(endDate)
+        barData.barWidth = 3000F
+
+        val combinedData = CombinedData()
+        combinedData.setData(lineData)
+
+        combinedChart.data = combinedData
+        configChart(context, combinedChart, l2.unity)
+    }
 
     fun setupForecastChartTest(context: Context, combinedChart: CombinedChart){
         val timestamp1 = (SimpleDateFormat("yyyy-MM-dd").parse("2019-01-01").time)/1000F
