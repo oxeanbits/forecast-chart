@@ -1,10 +1,10 @@
-package com.oxeanbits.forecastchart.ui
+package com.oxeanbits.forecastchart.example.ui
 
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.oxeanbits.example.util.SetupChartExample
+import com.oxeanbits.forecastchart.example.util.SetupChartExample
 import trikita.anvil.Anvil
 import trikita.anvil.BaseDSL.MATCH
 import trikita.anvil.BaseDSL.init

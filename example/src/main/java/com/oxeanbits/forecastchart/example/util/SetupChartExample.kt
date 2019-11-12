@@ -1,4 +1,4 @@
-package com.oxeanbits.example.util
+package com.oxeanbits.forecastchart.example.util
 
 import android.content.Context
 import android.graphics.Color
@@ -9,9 +9,9 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.CombinedData
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.utils.ColorTemplate
-import com.oxeanbits.sync.util.SetupChart.configChart
-import com.oxeanbits.sync.util.SetupChart.setupEndBarDataSet
-import com.oxeanbits.sync.util.SetupChart.setupLineDataSet
+import com.oxeanbits.forecastchart.sync.util.SetupChart.configChart
+import com.oxeanbits.forecastchart.sync.util.SetupChart.setupEndBarDataSet
+import com.oxeanbits.forecastchart.sync.util.SetupChart.setupLineDataSet
 import java.text.SimpleDateFormat
 
 object SetupChartExample{

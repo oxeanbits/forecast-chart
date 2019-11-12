@@ -1,4 +1,4 @@
-package com.oxeanbits.sync.util
+package com.oxeanbits.forecastchart.sync.util
 
 import android.content.Context
 import com.github.mikephil.charting.charts.CombinedChart
@@ -7,8 +7,8 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
-import com.oxeanbits.sync.R
-import com.oxeanbits.sync.ui.ForecastMarkerView
+import com.oxeanbits.forecastchart.sync.R
+import com.oxeanbits.forecastchart.sync.ui.ForecastMarkerView
 
 object SetupChart{
     fun setupLineDataSet(values: ArrayList<Entry>, label: String, color: Int): LineDataSet {
@@ -23,7 +23,7 @@ object SetupChart{
 
         return lineDataSet
     }
-
+    
     fun setupEndBarDataSet(values: ArrayList<BarEntry>, label: String, color: Int): BarDataSet {
         val barDataSet = BarDataSet(values, label)
         barDataSet.color = color

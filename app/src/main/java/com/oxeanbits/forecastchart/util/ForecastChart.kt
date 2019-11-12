@@ -8,9 +8,9 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.CombinedData
 import com.github.mikephil.charting.data.LineData
 import com.oxeanbits.forecastchart.model.Line
-import com.oxeanbits.sync.util.SetupChart.configChart
-import com.oxeanbits.sync.util.SetupChart.setupEndBarDataSet
-import com.oxeanbits.sync.util.SetupChart.setupLineDataSet
+import com.oxeanbits.forecastchart.sync.util.SetupChart.configChart
+import com.oxeanbits.forecastchart.sync.util.SetupChart.setupEndBarDataSet
+import com.oxeanbits.forecastchart.sync.util.SetupChart.setupLineDataSet
 
 object ForecastChart{
 
@@ -20,6 +20,7 @@ object ForecastChart{
 
         val endX = l2.values.get(l2.values.size-1).x
         val endY = l2.values.get(l2.values.size-1).y
+
         val endDateArray = arrayListOf(BarEntry(endX, endY))
         val endDate = setupEndBarDataSet(endDateArray, "End Date", Color.RED)
 
