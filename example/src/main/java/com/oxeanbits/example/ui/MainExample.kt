@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.github.mikephil.charting.charts.CombinedChart
-import com.oxeanbits.forecastchart.util.SetupChart
+import com.oxeanbits.example.util.SetupChartExample
 import trikita.anvil.Anvil
 import trikita.anvil.BaseDSL.MATCH
 import trikita.anvil.BaseDSL.init
@@ -15,8 +14,7 @@ import trikita.anvil.DSL.orientation
 import trikita.anvil.DSL.relativeLayout
 import trikita.anvil.RenderableView
 
-
-class MainActivity : AppCompatActivity() {
+class MainExample : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +28,14 @@ class MainActivity : AppCompatActivity() {
                     size(MATCH, MATCH)
                     orientation(LinearLayout.VERTICAL)
 
-                    v(com.github.mikephil.charting.charts.CombinedChart(applicationContext).javaClass,
+                    v(com.github.mikephil.charting.charts.CombinedChart(
+                        applicationContext).javaClass,
                         Anvil.Renderable{
                             size(MATCH, 500)
                             init{
-                                SetupChart.setupForecastChartTest(applicationContext, Anvil.currentView())
+                                SetupChartExample.createForecastChartExample(
+                                    applicationContext,
+                                    Anvil.currentView())
                             }
                     })
                 }

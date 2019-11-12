@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.ui.marker
+package com.oxeanbits.sync.ui
 
 import android.content.Context
 import android.widget.TextView
@@ -6,8 +6,8 @@ import com.github.mikephil.charting.components.MarkerView
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.MPPointF
-import com.oxeanbits.forecastchart.R
-import com.oxeanbits.forecastchart.util.DateFormatter
+import com.oxeanbits.sync.R
+import com.oxeanbits.sync.util.DateFormatter
 
 class ForecastMarkerView(context: Context?, layoutResource: Int, val unity: String) :
     MarkerView(context, layoutResource) {
@@ -19,9 +19,7 @@ class ForecastMarkerView(context: Context?, layoutResource: Int, val unity: Stri
         val dateContent: TextView = findViewById(R.id.date_content)
 
         val date = e?.x?.toLong()?.let {
-            DateFormatter.timestampToDate(
-                it
-            )
+            DateFormatter.timestampToDate(it)
         }
 
         prodContent.setText(e?.y.toString() + unity)

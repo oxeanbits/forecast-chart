@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.util
+package com.oxeanbits.sync.util
 
 import java.text.SimpleDateFormat
 import java.util.Date

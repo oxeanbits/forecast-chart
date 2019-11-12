@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.ui.chart
+package com.oxeanbits.forecastchart.ui
 
 import android.content.Context
 import com.github.mikephil.charting.charts.CombinedChart
