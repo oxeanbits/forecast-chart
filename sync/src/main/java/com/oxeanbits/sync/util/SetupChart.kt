@@ -34,6 +34,7 @@ object SetupChart{
 
     fun configChart(context: Context, combinedChart: CombinedChart, unity: String){
         combinedChart.legend.form = Legend.LegendForm.LINE
+        combinedChart.legend.textSize = 15f
 
         combinedChart.xAxis.setDrawLabels(false)
         combinedChart.xAxis.setDrawGridLines(false)
