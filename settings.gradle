@@ -1,2 +1,2 @@
-include ':app', ':example', ':sync'
+include ':app', ':core'
 rootProject.name='ForecastChart'

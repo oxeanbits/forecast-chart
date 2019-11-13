@@ -1,17 +1,20 @@
-package com.oxeanbits.forecastchart.sync.ui
+package com.oxeanbits.forecastchart.core.ui.marker
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.TextView
 import com.github.mikephil.charting.components.MarkerView
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.MPPointF
-import com.oxeanbits.forecastchart.sync.R
-import com.oxeanbits.forecastchart.sync.util.DateFormatter
+import com.oxeanbits.forecastchart.core.R
+import com.oxeanbits.forecastchart.core.util.DateFormatter
 
-class ForecastMarkerView(context: Context?, layoutResource: Int, val unity: String) :
+@SuppressLint("ViewConstructor")
+class ForecastMarkerView(context: Context?, layoutResource: Int, private val unity: String) :
     MarkerView(context, layoutResource) {
 
+    @SuppressLint("SetTextI18n")
     override fun refreshContent(e: Entry?, highlight: Highlight?) {
         super.refreshContent(e, highlight)
 
@@ -22,8 +25,8 @@ class ForecastMarkerView(context: Context?, layoutResource: Int, val unity: Stri
             DateFormatter.timestampToDate(it)
         }
 
-        prodContent.setText(e?.y.toString() + unity)
-        dateContent.setText(date)
+        prodContent.text = e?.y.toString() + unity
+        dateContent.text = date
     }
 
     private var mOffset: MPPointF? = null

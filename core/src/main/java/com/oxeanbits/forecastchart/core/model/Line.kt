@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.model
+package com.oxeanbits.forecastchart.core.model
 
 import com.github.mikephil.charting.data.Entry
 

@@ -1,32 +1,33 @@
-package com.oxeanbits.forecastchart.sync.util
+package com.oxeanbits.forecastchart.core.util
 
 import android.content.Context
 import com.github.mikephil.charting.charts.CombinedChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
-import com.oxeanbits.forecastchart.sync.R
-import com.oxeanbits.forecastchart.sync.ui.ForecastMarkerView
+import com.oxeanbits.forecastchart.core.R
+import com.oxeanbits.forecastchart.core.model.Bar
+import com.oxeanbits.forecastchart.core.model.Line
+import com.oxeanbits.forecastchart.core.ui.marker.ForecastMarkerView
 
 object SetupChart{
-    fun setupLineDataSet(values: ArrayList<Entry>, label: String, color: Int): LineDataSet {
-        val lineDataSet = LineDataSet(values, label)
-        lineDataSet.color = color
+
+    fun setupLineDataSet(line: Line): LineDataSet {
+        val lineDataSet = LineDataSet(line.values, line.label)
+        lineDataSet.color = line.color
         lineDataSet.lineWidth = 2f
         lineDataSet.setDrawCircles(false)
         lineDataSet.setDrawValues(false)
         lineDataSet.setDrawFilled(true)
-        lineDataSet.fillColor = color
+        lineDataSet.fillColor = line.color
         lineDataSet.fillAlpha = 45
 
         return lineDataSet
     }
-    
-    fun setupEndBarDataSet(values: ArrayList<BarEntry>, label: String, color: Int): BarDataSet {
-        val barDataSet = BarDataSet(values, label)
-        barDataSet.color = color
+
+    fun setupEndBarDataSet(bar: Bar): BarDataSet {
+        val barDataSet = BarDataSet(bar.values, bar.label)
+        barDataSet.color = bar.color
         barDataSet.setDrawValues(false)
 
         return barDataSet
