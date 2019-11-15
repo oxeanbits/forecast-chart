@@ -27,6 +27,7 @@ class ForecastMarkerView(context: Context?, layoutResource: Int, private val uni
 
         prodContent.text = e?.y.toString() + unity
         dateContent.text = date
+        super.refreshContent(e, highlight)
     }
 
     private var mOffset: MPPointF? = null

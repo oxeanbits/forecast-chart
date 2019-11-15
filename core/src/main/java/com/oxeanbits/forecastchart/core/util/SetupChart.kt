@@ -11,16 +11,20 @@ import com.oxeanbits.forecastchart.core.model.Line
 import com.oxeanbits.forecastchart.core.ui.marker.ForecastMarkerView
 
 object SetupChart{
+    const val LINE_WIDTH = 2f
+    const val FILL_ALPHA = 45
+    const val LEGEND_SIZE = 15f
+    const val SIDE_OFFSET = 40f
 
     fun setupLineDataSet(line: Line): LineDataSet {
         val lineDataSet = LineDataSet(line.values, line.label)
         lineDataSet.color = line.color
-        lineDataSet.lineWidth = 2f
+        lineDataSet.lineWidth = LINE_WIDTH
         lineDataSet.setDrawCircles(false)
         lineDataSet.setDrawValues(false)
         lineDataSet.setDrawFilled(true)
         lineDataSet.fillColor = line.color
-        lineDataSet.fillAlpha = 45
+        lineDataSet.fillAlpha = FILL_ALPHA
 
         return lineDataSet
     }
@@ -35,7 +39,7 @@ object SetupChart{
 
     fun configChart(context: Context, combinedChart: CombinedChart, unity: String){
         combinedChart.legend.form = Legend.LegendForm.LINE
-        combinedChart.legend.textSize = 15f
+        combinedChart.legend.textSize = LEGEND_SIZE
 
         combinedChart.xAxis.setDrawLabels(false)
         combinedChart.xAxis.setDrawGridLines(false)
@@ -58,5 +62,7 @@ object SetupChart{
             unity
         )
         combinedChart.marker = marker
+        combinedChart.extraLeftOffset = SIDE_OFFSET
+        combinedChart.extraRightOffset = SIDE_OFFSET
     }
 }
