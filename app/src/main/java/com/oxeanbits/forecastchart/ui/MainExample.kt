@@ -5,12 +5,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.oxeanbits.forecastchart.core.ui.component.combinedChartComponent
 import com.oxeanbits.forecastchart.util.SetupChartExample
-import trikita.anvil.Anvil
-import trikita.anvil.BaseDSL.MATCH
-import trikita.anvil.BaseDSL.init
-import trikita.anvil.BaseDSL.margin
-import trikita.anvil.BaseDSL.size
-import trikita.anvil.BaseDSL.text
 import trikita.anvil.RenderableView
 
 class MainExample : AppCompatActivity() {
@@ -25,9 +19,9 @@ class MainExample : AppCompatActivity() {
             override fun view() {
                 combinedChartComponent{
                     loadForecastChart(
-                        SetupChartExample.getExpectedObj(),
-                        SetupChartExample.getActualObj()
-                    )
+                       SetupChartExample.getExpectedObj(),
+                       SetupChartExample.getActualObj()
+                   )
                 }
             }
         }

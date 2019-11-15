@@ -14,6 +14,8 @@ import com.oxeanbits.forecastchart.core.util.SetupChart.setupEndBarDataSet
 import com.oxeanbits.forecastchart.core.util.SetupChart.setupLineDataSet
 
 object ForecastChart{
+    const val END_DATE_LABEL = "End Date"
+    const val BAR_WIDTH = 3000f
 
     fun createForecastChart(context: Context, combinedChart: CombinedChart, expectedData: Line, actualData: Line) {
         val actual = setupLineDataSet(actualData)
@@ -23,7 +25,7 @@ object ForecastChart{
         val endY = expectedData.values[expectedData.values.lastIndex].y
 
         val endDateEntry = arrayListOf(BarEntry(endX, endY))
-        val endDateObj = Bar(endDateEntry, "End Date", Color.RED, expectedData.unity)
+        val endDateObj = Bar(endDateEntry, END_DATE_LABEL, Color.RED, expectedData.unity)
         val endDate = setupEndBarDataSet(endDateObj)
 
         val lineData = LineData()
@@ -32,10 +34,11 @@ object ForecastChart{
 
         val barData = BarData()
         barData.addDataSet(endDate)
-        barData.barWidth = 3000f
+        barData.barWidth = BAR_WIDTH
 
         val combinedData = CombinedData()
         combinedData.setData(lineData)
+        combinedData.setData(barData)
 
         combinedChart.data = combinedData
         configChart(context, combinedChart, expectedData.unity)
