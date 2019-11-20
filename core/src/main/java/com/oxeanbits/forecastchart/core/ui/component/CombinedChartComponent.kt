@@ -43,15 +43,11 @@ class CombinedChartComponent(context: Context) : LinearLayout(context), Anvil.Re
                 margin(10)
                 init {
                     this.combinedChart = Anvil.currentView()
-                    this.combinedChart?.let {
-                        expectedData?.let { it1 ->
-                            actualData?.let { it2 ->
-                                ForecastChart.createForecastChart(context,
-                                    it, it1, it2
-                                )
-                            }
-                        }
-                    }
+
+                    val combinedChart =  this.combinedChart ?: return@init
+                    val expectedData = this.expectedData ?: return@init
+                    val actualData = this.actualData ?: return@init
+                    ForecastChart.createForecastChart(context, combinedChart, expectedData, actualData)
                 }
             }
         }
