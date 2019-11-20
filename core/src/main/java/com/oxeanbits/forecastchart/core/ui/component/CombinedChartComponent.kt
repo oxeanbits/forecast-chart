@@ -39,7 +39,7 @@ class CombinedChartComponent(context: Context) : LinearLayout(context), Anvil.Re
             orientation(VERTICAL)
 
             v(CombinedChart::class.java) {
-                size(MATCH, 500)
+                size(MATCH, MATCH)
                 margin(10)
                 init {
                     this.combinedChart = Anvil.currentView()
