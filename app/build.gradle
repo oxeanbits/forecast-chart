@@ -31,5 +31,7 @@ dependencies {
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+
     implementation project(path: ':core')
 }
