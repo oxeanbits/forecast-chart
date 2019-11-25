@@ -3,6 +3,7 @@ package com.oxeanbits.forecastchart.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.oxeanbits.forecastchart.core.ui.component.forecastChartComponent
 import com.oxeanbits.forecastchart.util.SetupChartExample
 import trikita.anvil.BaseDSL.MATCH
@@ -13,6 +14,7 @@ class MainExample : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidThreeTen.init(this)
         setContentView(getView())
     }
 

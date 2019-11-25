@@ -4,22 +4,19 @@ import android.graphics.Color
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.oxeanbits.forecastchart.core.model.Line
-import java.text.SimpleDateFormat
+import com.oxeanbits.forecastchart.core.util.DateFormatter
 
 object SetupChartExample{
-    const val THOUS = 1000f
 
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-
-    val timestamp1 = (dateFormat.parse("2019-01-01").time)/THOUS
+    val timestamp1 = DateFormatter.stringToTimestamp("2019-01-01")
     val progress1 = 25f
-    val timestamp2 = (dateFormat.parse("2019-01-02").time)/THOUS
+    val timestamp2 = DateFormatter.stringToTimestamp("2019-01-02")
     val progress2 = 25f + progress1
-    val timestamp3 = (dateFormat.parse("2019-01-03").time)/THOUS
+    val timestamp3 = DateFormatter.stringToTimestamp("2019-01-03")
     val progress3 = 25f + progress2
-    val timestamp4 = (dateFormat.parse("2019-01-04").time)/THOUS
+    val timestamp4 = DateFormatter.stringToTimestamp("2019-01-04")
     val progress4 = 0f + progress3
-    val timestamp5 = (dateFormat.parse("2019-01-05").time)/THOUS
+    val timestamp5 = DateFormatter.stringToTimestamp("2019-01-05")
     val progress5 = 25f + progress4
 
     fun getExpectedObj(): Line{
