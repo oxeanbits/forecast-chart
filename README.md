@@ -42,11 +42,20 @@ forecastChartComponent{
 }
 ```
 
+Initialize the timezone information in your `Application.onCreate()` method, for handle with date-time:
+```kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    AndroidThreeTen.init(this)
+}
+```
+
 ## References
 
 - 100% Kotlin based
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 - [Anvil](https://github.com/anvil-ui/anvil)
+- [ThreeTen Android Backport](https://github.com/JakeWharton/ThreeTenABP)
 
 ## MIT License
 
