@@ -11,7 +11,7 @@ import com.oxeanbits.forecastchart.core.R
 import com.oxeanbits.forecastchart.core.util.DateFormatter
 
 @SuppressLint("ViewConstructor")
-class ForecastMarkerView(context: Context?, layoutResource: Int, private val unity: String) :
+class ForecastMarkerView(context: Context?, layoutResource: Int, private val unit: String) :
     MarkerView(context, layoutResource) {
 
     @SuppressLint("SetTextI18n")
@@ -25,7 +25,7 @@ class ForecastMarkerView(context: Context?, layoutResource: Int, private val uni
             DateFormatter.timestampToDate(it)
         }
 
-        prodContent.text = e?.y.toString() + unity
+        prodContent.text = e?.y.toString() + unit
         dateContent.text = date
         super.refreshContent(e, highlight)
     }
