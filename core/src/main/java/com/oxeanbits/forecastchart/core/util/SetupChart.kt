@@ -26,6 +26,7 @@ object SetupChart{
 
         if(line.forecasted ){
             lineDataSet.enableDashedLine(10f, 10f, 0f)
+            lineDataSet.fillAlpha = 0
         }else{
             lineDataSet.fillColor = line.color
             lineDataSet.fillAlpha = FILL_ALPHA

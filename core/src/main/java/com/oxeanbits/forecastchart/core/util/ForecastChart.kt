@@ -15,32 +15,34 @@ import com.oxeanbits.forecastchart.core.util.SetupChart.setupLineDataSet
 
 object ForecastChart{
     const val END_DATE_LABEL = "End Date"
-    const val BAR_WIDTH = 3000f
+    const val BAR_WIDTH = 1000f
 
-    fun createForecastChart(context: Context, combinedChart: CombinedChart, expectedData: Line, actualData: Line) {
+    fun createForecastChart(context: Context, combinedChart: CombinedChart, expectedData: Line,
+                            actualData: Line, forecastedData: Line, endDateData: BarEntry,
+                            unit: String) {
+
         val actual = setupLineDataSet(actualData)
         val production = setupLineDataSet(expectedData)
+        val forecasted = setupLineDataSet(forecastedData)
 
-        val endX = expectedData.values[expectedData.values.lastIndex].x
-        val endY = expectedData.values[expectedData.values.lastIndex].y
-
-        val endDateEntry = arrayListOf(BarEntry(endX, endY))
-        val endDateObj = Bar(endDateEntry, END_DATE_LABEL, Color.RED, expectedData.unity)
+        val endDateEntry = arrayListOf(endDateData)
+        val endDateObj = Bar(endDateEntry, END_DATE_LABEL, Color.RED)
         val endDate = setupEndBarDataSet(endDateObj)
 
         val lineData = LineData()
-        lineData.addDataSet(actual)
         lineData.addDataSet(production)
+        lineData.addDataSet(actual)
+        lineData.addDataSet(forecasted)
 
         val barData = BarData()
         barData.addDataSet(endDate)
-        barData.barWidth = BAR_WIDTH
+        barData.barWidth = BAR_WIDTH * (actualData.values.size + forecastedData.values.size)
 
         val combinedData = CombinedData()
         combinedData.setData(lineData)
         combinedData.setData(barData)
 
         combinedChart.data = combinedData
-        configChart(context, combinedChart, expectedData.unity)
+        configChart(context, combinedChart, unit)
     }
 }
