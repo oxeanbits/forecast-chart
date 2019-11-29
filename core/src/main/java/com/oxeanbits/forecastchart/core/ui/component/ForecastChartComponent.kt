@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Typeface.BOLD
 import android.widget.LinearLayout
 import com.github.mikephil.charting.charts.CombinedChart
+import com.github.mikephil.charting.data.BarEntry
 import com.oxeanbits.forecastchart.core.model.Line
 import com.oxeanbits.forecastchart.core.util.Colors
 import com.oxeanbits.forecastchart.core.util.ForecastChart
@@ -30,6 +31,9 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
     private var combinedChart: CombinedChart? = null
     private var expectedData: Line? = null
     private var actualData: Line? = null
+    private var forecastedData: Line? = null
+    private var endDateData: BarEntry? = null
+    private var unit: String = ""
 
     public override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -58,13 +62,13 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
 
             val expectedData = this.expectedData ?: return@linearLayout
             val actualData = this.actualData ?: return@linearLayout
+            val forecastedData = this.forecastedData ?: return@linearLayout
 
             linearLayout {
                 margin(30, 20, 0, 0)
                 size(WRAP, WRAP)
                 orientation(VERTICAL)
-                if (expectedData.values.isNotEmpty() &&
-                    actualData.values.isNotEmpty()) {
+                if (actualData.values.isNotEmpty()) {
                     renderChartDetails(actualData)
                     renderDetailsLegend(actualData.label)
                 }
@@ -77,6 +81,9 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
                 if (expectedData.values.isNotEmpty()) {
                     renderChartDetails(expectedData)
                     renderDetailsLegend(expectedData.label)
+                }else if(forecastedData.values.isNotEmpty()){
+                    renderChartDetails(forecastedData)
+                    renderDetailsLegend(forecastedData.label)
                 }
             }
         }
@@ -96,7 +103,7 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
             }
             textView {
                 size(WRAP, WRAP)
-                text(" ${data.unity}")
+                text(" ${unit}")
                 textColor(Colors.TEXT_DEFAULT_GRAY)
                 textSize(15f)
             }
@@ -120,21 +127,37 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
                 val combinedChart = this.combinedChart ?: return@init
                 val expectedData = this.expectedData ?: return@init
                 val actualData = this.actualData ?: return@init
+                val forecastedData = this.forecastedData ?: return@init
+                val endDateData = this.endDateData ?: return@init
 
-                if(expectedData.values.isNotEmpty()) {
-                    ForecastChart.createForecastChart(
-                        context,
-                        combinedChart,
-                        expectedData,
-                        actualData
-                    )
-                }
+                ForecastChart.createForecastChart(
+                    context,
+                    combinedChart,
+                    expectedData,
+                    actualData,
+                    forecastedData,
+                    endDateData,
+                    unit
+                )
             }
         }
     }
 
-    fun loadForecastChart(expectedData: Line, actualData: Line){
+    fun loadForecastChart(expectedData: Line, actualData: Line, forecastedData: Line,
+                          endDateData: BarEntry, unit: String){
         this.expectedData = expectedData
         this.actualData = actualData
+        this.forecastedData = forecastedData
+        this.endDateData = endDateData
+        this.unit = unit
+    }
+
+    fun loadForecastChart(actualData: Line, forecastedData: Line,
+                          endDateData: BarEntry, unit: String){
+        this.expectedData = Line(arrayListOf(), "", 0, false)
+        this.actualData = actualData
+        this.forecastedData = forecastedData
+        this.endDateData = endDateData
+        this.unit = unit
     }
 }
