@@ -130,15 +130,18 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
                 val forecastedData = this.forecastedData ?: return@init
                 val endDateData = this.endDateData ?: return@init
 
-                ForecastChart.createForecastChart(
-                    context,
-                    combinedChart,
-                    expectedData,
-                    actualData,
-                    forecastedData,
-                    endDateData,
-                    unit
-                )
+                if(actualData.values.isNotEmpty() || forecastedData.values.isNotEmpty()
+                    || expectedData.values.isNotEmpty()) {
+                    ForecastChart.createForecastChart(
+                        context,
+                        combinedChart,
+                        expectedData,
+                        actualData,
+                        forecastedData,
+                        endDateData,
+                        unit
+                    )
+                }
             }
         }
     }

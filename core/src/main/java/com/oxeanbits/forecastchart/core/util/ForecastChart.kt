@@ -21,8 +21,8 @@ object ForecastChart{
                             actualData: Line, forecastedData: Line, endDateData: BarEntry,
                             unit: String) {
 
-        val actual = setupLineDataSet(actualData)
         val production = setupLineDataSet(expectedData)
+        val actual = setupLineDataSet(actualData)
         val forecasted = setupLineDataSet(forecastedData)
 
         val endDateEntry = arrayListOf(endDateData)
