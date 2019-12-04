@@ -23,8 +23,14 @@ object SetupChart{
         lineDataSet.setDrawCircles(false)
         lineDataSet.setDrawValues(false)
         lineDataSet.setDrawFilled(true)
-        lineDataSet.fillColor = line.color
-        lineDataSet.fillAlpha = FILL_ALPHA
+
+        if(line.forecasted ){
+            lineDataSet.enableDashedLine(10f, 10f, 0f)
+            lineDataSet.fillAlpha = 0
+        }else{
+            lineDataSet.fillColor = line.color
+            lineDataSet.fillAlpha = FILL_ALPHA
+        }
 
         return lineDataSet
     }
@@ -37,7 +43,7 @@ object SetupChart{
         return barDataSet
     }
 
-    fun configChart(context: Context, combinedChart: CombinedChart, unity: String){
+    fun configChart(context: Context, combinedChart: CombinedChart, unit: String){
         combinedChart.legend.form = Legend.LegendForm.LINE
         combinedChart.legend.xEntrySpace = LEGEND_SIZE
         combinedChart.legend.textSize = LEGEND_SIZE
@@ -60,7 +66,7 @@ object SetupChart{
         val marker = ForecastMarkerView(
             context,
             R.layout.marker_layout,
-            unity
+            unit
         )
         combinedChart.marker = marker
         combinedChart.extraLeftOffset = SIDE_OFFSET
