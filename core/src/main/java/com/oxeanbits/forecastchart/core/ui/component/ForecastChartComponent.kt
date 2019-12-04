@@ -14,12 +14,12 @@ import trikita.anvil.BaseDSL.WRAP
 import trikita.anvil.BaseDSL.init
 import trikita.anvil.BaseDSL.margin
 import trikita.anvil.BaseDSL.size
-import trikita.anvil.BaseDSL.text
 import trikita.anvil.BaseDSL.textSize
 import trikita.anvil.BaseDSL.typeface
 import trikita.anvil.BaseDSL.v
 import trikita.anvil.DSL.linearLayout
 import trikita.anvil.DSL.orientation
+import trikita.anvil.DSL.text
 import trikita.anvil.DSL.textColor
 import trikita.anvil.DSL.textView
 
@@ -34,6 +34,7 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
     private var forecastedData: Line? = null
     private var endDateData: BarEntry? = null
     private var unit: String = ""
+    private var zoomEnabled: Boolean = false
 
     public override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -139,7 +140,8 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
                         actualData,
                         forecastedData,
                         endDateData,
-                        unit
+                        unit,
+                        zoomEnabled
                     )
                 }
             }
@@ -147,20 +149,22 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
     }
 
     fun loadForecastChart(expectedData: Line, actualData: Line, forecastedData: Line,
-                          endDateData: BarEntry, unit: String){
+                          endDateData: BarEntry, unit: String, zoomEnabled: Boolean = false){
         this.expectedData = expectedData
         this.actualData = actualData
         this.forecastedData = forecastedData
         this.endDateData = endDateData
         this.unit = unit
+        this.zoomEnabled = zoomEnabled
     }
 
     fun loadForecastChart(actualData: Line, forecastedData: Line,
-                          endDateData: BarEntry, unit: String){
+                          endDateData: BarEntry, unit: String, zoomEnabled: Boolean = false){
         this.expectedData = Line(arrayListOf(), "", 0, false)
         this.actualData = actualData
         this.forecastedData = forecastedData
         this.endDateData = endDateData
         this.unit = unit
+        this.zoomEnabled = zoomEnabled
     }
 }
