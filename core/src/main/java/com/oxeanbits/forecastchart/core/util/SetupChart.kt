@@ -43,7 +43,8 @@ object SetupChart{
         return barDataSet
     }
 
-    fun configChart(context: Context, combinedChart: CombinedChart, unit: String){
+    fun configChart(context: Context, combinedChart: CombinedChart, unit: String,
+                    zoomEnabled: Boolean){
         combinedChart.legend.form = Legend.LegendForm.LINE
         combinedChart.legend.xEntrySpace = LEGEND_SIZE
         combinedChart.legend.textSize = LEGEND_SIZE
@@ -62,6 +63,7 @@ object SetupChart{
 
         combinedChart.description = null
         combinedChart.setPinchZoom(true)
+        combinedChart.setScaleEnabled(zoomEnabled)
 
         val marker = ForecastMarkerView(
             context,

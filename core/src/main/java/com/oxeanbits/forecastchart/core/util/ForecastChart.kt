@@ -19,7 +19,7 @@ object ForecastChart{
 
     fun createForecastChart(context: Context, combinedChart: CombinedChart, expectedData: Line,
                             actualData: Line, forecastedData: Line, endDateData: BarEntry,
-                            unit: String) {
+                            unit: String, zoomEnabled: Boolean) {
 
         val production = setupLineDataSet(expectedData)
         val actual = setupLineDataSet(actualData)
@@ -43,6 +43,6 @@ object ForecastChart{
         combinedData.setData(barData)
 
         combinedChart.data = combinedData
-        configChart(context, combinedChart, unit)
+        configChart(context, combinedChart, unit, zoomEnabled)
     }
 }
