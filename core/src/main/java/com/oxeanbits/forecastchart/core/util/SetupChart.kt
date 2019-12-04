@@ -73,5 +73,9 @@ object SetupChart{
         combinedChart.marker = marker
         combinedChart.extraLeftOffset = SIDE_OFFSET
         combinedChart.extraRightOffset = SIDE_OFFSET
+
+        combinedChart.setOnClickListener {
+            combinedChart.highlightValue(null)
+        }
     }
 }
