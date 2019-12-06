@@ -22,6 +22,11 @@ class MainExample : AppCompatActivity() {
     }
 
     private fun getView(): View {
+        val expectedLine = SetupChartExample.getExpectedObj()
+        val actualLine = SetupChartExample.getActualObj()
+        val forecastedLine = SetupChartExample.getForecastedObj()
+        val endDateBar = SetupChartExample.getEndDateObj()
+
         return object : RenderableView(this) {
             override fun view() {
                 linearLayout{
@@ -30,23 +35,25 @@ class MainExample : AppCompatActivity() {
 
                     forecastChartComponent{
                         size(MATCH, 350)
-                        loadForecastChart(
-                            SetupChartExample.getExpectedObj(),
-                            SetupChartExample.getActualObj(),
-                            SetupChartExample.getForecastedObj(),
-                            SetupChartExample.getEndDateObj(),
-                            "m³"
-                        )
+                        expectedLine(expectedLine.values, expectedLine.label,
+                            expectedLine.color, expectedLine.forecasted)
+                        actualLine(actualLine.values, actualLine.label,
+                            actualLine.color, actualLine.forecasted)
+                        forecastedLine(forecastedLine.values, forecastedLine.label,
+                            forecastedLine.color, forecastedLine.forecasted)
+                        endDateBar(endDateBar.x, endDateBar.y)
+                        unit("m³")
+                        zoomEnabled(true)
                     }
 
                     forecastChartComponent {
                         size(MATCH, 350)
-                        loadForecastChart(
-                            SetupChartExample.getActualObj(),
-                            SetupChartExample.getForecastedObj(),
-                            SetupChartExample.getEndDateObj(),
-                            "m³"
-                        )
+                        actualLine(actualLine.values, actualLine.label,
+                            actualLine.color, actualLine.forecasted)
+                        forecastedLine(forecastedLine.values, forecastedLine.label,
+                            forecastedLine.color, forecastedLine.forecasted)
+                        endDateBar(endDateBar.x, endDateBar.y)
+                        unit("m³")
                     }
                 }
             }

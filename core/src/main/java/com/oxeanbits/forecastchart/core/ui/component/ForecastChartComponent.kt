@@ -5,6 +5,7 @@ import android.graphics.Typeface.BOLD
 import android.widget.LinearLayout
 import com.github.mikephil.charting.charts.CombinedChart
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
 import com.oxeanbits.forecastchart.core.model.Line
 import com.oxeanbits.forecastchart.core.util.Colors
 import com.oxeanbits.forecastchart.core.util.ForecastChart
@@ -29,10 +30,10 @@ inline fun forecastChartComponent(crossinline func: ForecastChartComponent.() ->
 
 class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Renderable {
     private var combinedChart: CombinedChart? = null
-    private var expectedData: Line? = null
+    private var expectedData: Line = emptyLine()
     private var actualData: Line? = null
     private var forecastedData: Line? = null
-    private var endDateData: BarEntry? = null
+    private var endDateData: BarEntry = emptyBar()
     private var unit: String = ""
     private var zoomEnabled: Boolean = false
 
@@ -126,10 +127,10 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
             init {
                 this.combinedChart = Anvil.currentView()
                 val combinedChart = this.combinedChart ?: return@init
-                val expectedData = this.expectedData ?: return@init
+                val expectedData = this.expectedData
                 val actualData = this.actualData ?: return@init
                 val forecastedData = this.forecastedData ?: return@init
-                val endDateData = this.endDateData ?: return@init
+                val endDateData = this.endDateData
 
                 if(actualData.values.isNotEmpty() || forecastedData.values.isNotEmpty()
                     || expectedData.values.isNotEmpty()) {
@@ -148,23 +149,38 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
         }
     }
 
-    fun loadForecastChart(expectedData: Line, actualData: Line, forecastedData: Line,
-                          endDateData: BarEntry, unit: String, zoomEnabled: Boolean = false){
-        this.expectedData = expectedData
-        this.actualData = actualData
-        this.forecastedData = forecastedData
-        this.endDateData = endDateData
-        this.unit = unit
-        this.zoomEnabled = zoomEnabled
+    private fun emptyLine(): Line{
+        return Line(arrayListOf(), "", 0, false)
     }
 
-    fun loadForecastChart(actualData: Line, forecastedData: Line,
-                          endDateData: BarEntry, unit: String, zoomEnabled: Boolean = false){
-        this.expectedData = Line(arrayListOf(), "", 0, false)
-        this.actualData = actualData
-        this.forecastedData = forecastedData
-        this.endDateData = endDateData
+    private fun emptyBar(): BarEntry{
+        return BarEntry(-1f, 0f)
+    }
+
+    fun expectedLine(arrayData: ArrayList<Entry>, label: String,
+                     color: Int, forecasted: Boolean = false){
+        this.expectedData = Line(arrayData, label, color, forecasted)
+    }
+
+    fun actualLine(arrayData: ArrayList<Entry>, label: String,
+                   color: Int, forecasted: Boolean = false){
+        this.actualData = Line(arrayData, label, color, forecasted)
+    }
+
+    fun forecastedLine(arrayData: ArrayList<Entry>, label: String,
+                       color: Int, forecasted: Boolean = true){
+        this.forecastedData = Line(arrayData, label, color, forecasted)
+    }
+
+    fun endDateBar(x: Float, y: Float){
+        this.endDateData = BarEntry(x, y)
+    }
+
+    fun unit(unit: String){
         this.unit = unit
+    }
+
+    fun zoomEnabled(zoomEnabled: Boolean){
         this.zoomEnabled = zoomEnabled
     }
 }
