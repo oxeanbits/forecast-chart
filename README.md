@@ -30,15 +30,16 @@ dependencies {
 ## Basic usage
 
 ```kotlin
-val expected = Line(arrayListOf(Entry(1f, 1f), Entry(2f, 2f)), "Expected", Color.BLUE, "m³")
-val actual = Line(arrayListOf(Entry(1f, 1f)), "Actual", Color.GREEN, "m³")
+expectedDataArray = arrayListOf(Entry(1f, 1f), Entry(2f, 2f), Entry(3f, 3f)
+actualDataArray = arrayListOf(Entry(1f, 1f), Entry(2f, 2f))
+forecastedDataArray = arrayListOf(Entry(2f, 2f), Entry(3f, 3f))
 
 forecastChartComponent{
     size(MATCH, 350)
-    loadForecastChart(
-        expected,
-        actual
-    )
+    expectedLine(expectedDataArray, "Expected", Color.BLUE)
+    actualLine(actualDataArray, "Actual", Color.GREEN)
+    forecastedLine(forecastedDataArray, "Forecasted", Color.GRAY)
+    unit("m³")
 }
 ```
 
