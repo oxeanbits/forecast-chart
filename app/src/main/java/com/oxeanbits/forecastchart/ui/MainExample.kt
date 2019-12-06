@@ -35,24 +35,24 @@ class MainExample : AppCompatActivity() {
 
                     forecastChartComponent{
                         size(MATCH, 350)
-                        expectedData(expectedLine.values, expectedLine.label,
+                        expectedLine(expectedLine.values, expectedLine.label,
                             expectedLine.color, expectedLine.forecasted)
-                        actualData(actualLine.values, actualLine.label,
+                        actualLine(actualLine.values, actualLine.label,
                             actualLine.color, actualLine.forecasted)
-                        forecastedData(forecastedLine.values, forecastedLine.label,
+                        forecastedLine(forecastedLine.values, forecastedLine.label,
                             forecastedLine.color, forecastedLine.forecasted)
-                        endDateData(endDateBar.x, endDateBar.y)
+                        endDateBar(endDateBar.x, endDateBar.y)
                         unit("m³")
                         zoomEnabled(true)
                     }
 
                     forecastChartComponent {
                         size(MATCH, 350)
-                        actualData(actualLine.values, actualLine.label,
+                        actualLine(actualLine.values, actualLine.label,
                             actualLine.color, actualLine.forecasted)
-                        forecastedData(forecastedLine.values, forecastedLine.label,
+                        forecastedLine(forecastedLine.values, forecastedLine.label,
                             forecastedLine.color, forecastedLine.forecasted)
-                        endDateData(endDateBar.x, endDateBar.y)
+                        endDateBar(endDateBar.x, endDateBar.y)
                         unit("m³")
                     }
                 }

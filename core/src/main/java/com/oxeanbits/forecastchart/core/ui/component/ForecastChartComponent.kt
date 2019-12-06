@@ -157,22 +157,22 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
         return BarEntry(-1f, 0f)
     }
 
-    fun expectedData(arrayData: ArrayList<Entry>, label: String,
+    fun expectedLine(arrayData: ArrayList<Entry>, label: String,
                      color: Int, forecasted: Boolean = false){
         this.expectedData = Line(arrayData, label, color, forecasted)
     }
 
-    fun actualData(arrayData: ArrayList<Entry>, label: String,
+    fun actualLine(arrayData: ArrayList<Entry>, label: String,
                    color: Int, forecasted: Boolean = false){
         this.actualData = Line(arrayData, label, color, forecasted)
     }
 
-    fun forecastedData(arrayData: ArrayList<Entry>, label: String,
+    fun forecastedLine(arrayData: ArrayList<Entry>, label: String,
                        color: Int, forecasted: Boolean = true){
         this.forecastedData = Line(arrayData, label, color, forecasted)
     }
 
-    fun endDateData(x: Float, y: Float){
+    fun endDateBar(x: Float, y: Float){
         this.endDateData = BarEntry(x, y)
     }
 
