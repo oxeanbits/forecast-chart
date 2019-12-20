@@ -36,6 +36,7 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
     private var endDateData: BarEntry = emptyBar()
     private var unit: String = ""
     private var zoomEnabled: Boolean = false
+    private var detailsEnable: Boolean = false
 
     public override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -52,7 +53,9 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
             size(MATCH, MATCH)
             orientation(VERTICAL)
 
-            renderDetailsLayout()
+            if(detailsEnable) {
+                renderDetailsLayout()
+            }
             renderChart()
         }
     }
@@ -182,5 +185,9 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
 
     fun zoomEnabled(zoomEnabled: Boolean){
         this.zoomEnabled = zoomEnabled
+    }
+
+    fun detailsEnable(detailsEnable: Boolean){
+        this.detailsEnable = detailsEnable
     }
 }
