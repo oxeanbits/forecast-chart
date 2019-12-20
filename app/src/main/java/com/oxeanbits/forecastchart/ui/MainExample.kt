@@ -54,6 +54,7 @@ class MainExample : AppCompatActivity() {
                             forecastedLine.color, forecastedLine.forecasted)
                         endDateBar(endDateBar.x, endDateBar.y)
                         unit("m³")
+                        detailsEnable(true)
                     }
                 }
             }
