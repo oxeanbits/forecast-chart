@@ -9,6 +9,7 @@ import com.oxeanbits.forecastchart.core.R
 import com.oxeanbits.forecastchart.core.model.Bar
 import com.oxeanbits.forecastchart.core.model.Line
 import com.oxeanbits.forecastchart.core.ui.marker.ForecastMarkerView
+import java.text.DecimalFormat
 
 object SetupChart{
     const val LINE_WIDTH = 2f
@@ -44,7 +45,7 @@ object SetupChart{
     }
 
     fun configChart(context: Context, combinedChart: CombinedChart, unit: String,
-                    zoomEnabled: Boolean){
+                    dateFormat: String, decimalFormat: DecimalFormat, zoomEnabled: Boolean){
         combinedChart.legend.form = Legend.LegendForm.LINE
         combinedChart.legend.xEntrySpace = LEGEND_SIZE
         combinedChart.legend.textSize = LEGEND_SIZE
@@ -68,7 +69,9 @@ object SetupChart{
         val marker = ForecastMarkerView(
             context,
             R.layout.marker_layout,
-            unit
+            unit,
+            dateFormat,
+            decimalFormat
         )
         combinedChart.marker = marker
         combinedChart.extraLeftOffset = SIDE_OFFSET

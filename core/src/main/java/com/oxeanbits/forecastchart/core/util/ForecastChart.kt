@@ -12,14 +12,15 @@ import com.oxeanbits.forecastchart.core.model.Line
 import com.oxeanbits.forecastchart.core.util.SetupChart.configChart
 import com.oxeanbits.forecastchart.core.util.SetupChart.setupEndBarDataSet
 import com.oxeanbits.forecastchart.core.util.SetupChart.setupLineDataSet
+import java.text.DecimalFormat
 
 object ForecastChart{
-    const val END_DATE_LABEL = "End Date"
-    const val BAR_WIDTH = 1000f
+    private const val END_DATE_LABEL = "End Date"
+    private const val BAR_WIDTH = 1000f
 
     fun createForecastChart(context: Context, combinedChart: CombinedChart, expectedData: Line,
                             actualData: Line, forecastedData: Line, endDateData: BarEntry,
-                            unit: String, zoomEnabled: Boolean) {
+                            unit: String, dateFormat: String, decimalFormat: DecimalFormat, zoomEnabled: Boolean) {
 
         val production = setupLineDataSet(expectedData)
         val actual = setupLineDataSet(actualData)
@@ -43,6 +44,6 @@ object ForecastChart{
         combinedData.setData(barData)
 
         combinedChart.data = combinedData
-        configChart(context, combinedChart, unit, zoomEnabled)
+        configChart(context, combinedChart, unit, dateFormat, decimalFormat, zoomEnabled)
     }
 }

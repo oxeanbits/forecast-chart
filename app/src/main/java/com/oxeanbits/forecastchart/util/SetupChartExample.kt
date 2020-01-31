@@ -6,6 +6,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.oxeanbits.forecastchart.core.model.Line
 import com.oxeanbits.forecastchart.core.util.DateFormatter
+import java.text.DecimalFormat
 
 object SetupChartExample{
 
@@ -51,5 +52,13 @@ object SetupChartExample{
 
     fun getEndDateObj(): BarEntry{
         return BarEntry(timestamp5, 100f)
+    }
+
+    fun getDecimalFormat(): DecimalFormat{
+        val decimalFormat = DecimalFormat()
+        decimalFormat.minimumFractionDigits = 2
+        decimalFormat.maximumFractionDigits = 2
+
+        return decimalFormat
     }
 }
