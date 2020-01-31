@@ -9,14 +9,16 @@ import org.threeten.bp.format.DateTimeFormatter
 
 object DateFormatter{
 
+    const val DEFAULT_DATE_FORMAT: String = "dd/MM/yyyy"
+
     fun stringToTimestamp(date: String): Float{
         return LocalDate.parse(date).atStartOfDay()
             .toInstant(ZoneOffset.UTC).epochSecond.toFloat()
     }
 
-    fun timestampToDate(timestamp: Long): String{
+    fun timestampToDate(timestamp: Long, dateFormat: String): String{
         val mDate = LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneOffset.UTC)
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formatter = DateTimeFormatter.ofPattern(dateFormat)
         return mDate.format(formatter)
     }
 }

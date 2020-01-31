@@ -8,6 +8,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.oxeanbits.forecastchart.core.model.Line
 import com.oxeanbits.forecastchart.core.util.Colors
+import com.oxeanbits.forecastchart.core.util.DateFormatter.DEFAULT_DATE_FORMAT
 import com.oxeanbits.forecastchart.core.util.ForecastChart
 import trikita.anvil.Anvil
 import trikita.anvil.BaseDSL.MATCH
@@ -23,6 +24,7 @@ import trikita.anvil.DSL.orientation
 import trikita.anvil.DSL.text
 import trikita.anvil.DSL.textColor
 import trikita.anvil.DSL.textView
+import java.text.DecimalFormat
 
 inline fun forecastChartComponent(crossinline func: ForecastChartComponent.() -> Unit) {
     highOrderComponent(func)
@@ -35,6 +37,8 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
     private var forecastedData: Line? = null
     private var endDateData: BarEntry = emptyBar()
     private var unit: String = ""
+    private var dateFormat: String = DEFAULT_DATE_FORMAT
+    private var decimalFormat: DecimalFormat = DecimalFormat()
     private var zoomEnabled: Boolean = false
     private var detailsEnable: Boolean = false
 
@@ -108,7 +112,7 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
             }
             textView {
                 size(WRAP, WRAP)
-                text(" ${unit}")
+                text(" $unit")
                 textColor(Colors.TEXT_DEFAULT_GRAY)
                 textSize(15f)
             }
@@ -145,6 +149,8 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
                         forecastedData,
                         endDateData,
                         unit,
+                        dateFormat,
+                        decimalFormat,
                         zoomEnabled
                     )
                 }
@@ -181,6 +187,14 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
 
     fun unit(unit: String){
         this.unit = unit
+    }
+
+    fun dateFormat(dateFormat: String){
+        this.dateFormat = dateFormat
+    }
+
+    fun decimalFormat(decimalFormat: DecimalFormat){
+        this.decimalFormat = decimalFormat
     }
 
     fun zoomEnabled(zoomEnabled: Boolean){

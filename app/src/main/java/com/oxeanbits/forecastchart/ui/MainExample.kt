@@ -54,6 +54,8 @@ class MainExample : AppCompatActivity() {
                             forecastedLine.color, forecastedLine.forecasted)
                         endDateBar(endDateBar.x, endDateBar.y)
                         unit("m³")
+                        dateFormat("MM/dd/yyyy")
+                        decimalFormat(SetupChartExample.getDecimalFormat())
                         detailsEnable(true)
                     }
                 }

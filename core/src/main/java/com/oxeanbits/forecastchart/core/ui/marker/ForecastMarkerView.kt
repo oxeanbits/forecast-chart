@@ -9,9 +9,11 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.MPPointF
 import com.oxeanbits.forecastchart.core.R
 import com.oxeanbits.forecastchart.core.util.DateFormatter
+import java.text.DecimalFormat
 
 @SuppressLint("ViewConstructor")
-class ForecastMarkerView(context: Context?, layoutResource: Int, private val unit: String) :
+class ForecastMarkerView(context: Context?, layoutResource: Int, private val unit: String,
+                         private val dateFormat: String, private val decimalFormat: DecimalFormat) :
     MarkerView(context, layoutResource) {
 
     @SuppressLint("SetTextI18n")
@@ -22,10 +24,10 @@ class ForecastMarkerView(context: Context?, layoutResource: Int, private val uni
         val dateContent: TextView = findViewById(R.id.date_content)
 
         val date = e?.x?.toLong()?.let {
-            DateFormatter.timestampToDate(it)
+            DateFormatter.timestampToDate(it, dateFormat)
         }
 
-        prodContent.text = e?.y.toString() + unit
+        prodContent.text = decimalFormat.format(e?.y) + unit
         dateContent.text = date
         super.refreshContent(e, highlight)
     }
