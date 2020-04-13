@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.core.util
+package com.oxeanbits.forecastchart.util
 
 import android.content.Context
 import com.github.mikephil.charting.charts.CombinedChart
@@ -6,9 +6,9 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.LineDataSet
 import com.oxeanbits.forecastchart.core.R
-import com.oxeanbits.forecastchart.core.model.Bar
-import com.oxeanbits.forecastchart.core.model.Line
-import com.oxeanbits.forecastchart.core.ui.marker.ForecastMarkerView
+import com.oxeanbits.forecastchart.model.Bar
+import com.oxeanbits.forecastchart.model.Line
+import com.oxeanbits.forecastchart.ui.marker.ForecastMarkerView
 import java.text.DecimalFormat
 
 object SetupChart{

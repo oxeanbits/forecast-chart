@@ -1,19 +1,18 @@
-package com.oxeanbits.forecastchart.core.ui.component
+package com.oxeanbits.forecastchart.ui.component
 
 import android.content.Context
 import android.graphics.Typeface.BOLD
-import android.widget.LinearLayout
 import com.github.mikephil.charting.charts.CombinedChart
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
-import com.oxeanbits.forecastchart.core.model.Line
-import com.oxeanbits.forecastchart.core.util.Colors
-import com.oxeanbits.forecastchart.core.util.DateFormatter.DEFAULT_DATE_FORMAT
-import com.oxeanbits.forecastchart.core.util.ForecastChart
-import trikita.anvil.Anvil
+import com.oxeanbits.forecastchart.model.Line
+import com.oxeanbits.forecastchart.ui.anvil.LinearLayoutComponent
+import com.oxeanbits.forecastchart.util.Colors
+import com.oxeanbits.forecastchart.util.DateFormatter.DEFAULT_DATE_FORMAT
+import com.oxeanbits.forecastchart.util.ForecastChart
+import trikita.anvil.Anvil.currentView
 import trikita.anvil.BaseDSL.MATCH
 import trikita.anvil.BaseDSL.WRAP
-import trikita.anvil.BaseDSL.init
 import trikita.anvil.BaseDSL.margin
 import trikita.anvil.BaseDSL.size
 import trikita.anvil.BaseDSL.textSize
@@ -30,7 +29,7 @@ inline fun forecastChartComponent(crossinline func: ForecastChartComponent.() ->
     highOrderComponent(func)
 }
 
-class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Renderable {
+class ForecastChartComponent(context: Context) : LinearLayoutComponent(context) {
     private var combinedChart: CombinedChart? = null
     private var expectedData: Line = emptyLine()
     private var actualData: Line? = null
@@ -42,26 +41,13 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
     private var zoomEnabled: Boolean = false
     private var detailsEnable: Boolean = false
 
-    public override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        Anvil.mount(this, this)
-    }
-
-    public override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        Anvil.unmount(this, false)
-    }
-
     override fun view() {
-        linearLayout{
-            size(MATCH, MATCH)
-            orientation(VERTICAL)
+        orientation(VERTICAL)
 
-            if(detailsEnable) {
-                renderDetailsLayout()
-            }
-            renderChart()
+        if(detailsEnable) {
+            renderDetailsLayout()
         }
+        renderChart()
     }
 
     private fun renderDetailsLayout(){
@@ -69,7 +55,7 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
             size(WRAP, WRAP)
             orientation(HORIZONTAL)
 
-            val expectedData = this.expectedData ?: return@linearLayout
+            val expectedData = this.expectedData
             val actualData = this.actualData ?: return@linearLayout
             val forecastedData = this.forecastedData ?: return@linearLayout
 
@@ -128,32 +114,31 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
         }
     }
 
-    private fun renderChart(){
+    private fun renderChart() {
+        val expectedData = this.expectedData
+        val actualData = this.actualData ?: return
+        val forecastedData = this.forecastedData ?: return
+
         v(CombinedChart::class.java) {
             size(MATCH, MATCH)
-            init {
-                this.combinedChart = Anvil.currentView()
-                val combinedChart = this.combinedChart ?: return@init
-                val expectedData = this.expectedData
-                val actualData = this.actualData ?: return@init
-                val forecastedData = this.forecastedData ?: return@init
-                val endDateData = this.endDateData
+            this.combinedChart = currentView()
+            val combinedChart = this.combinedChart ?: return@v
+            val endDateData = this.endDateData
 
-                if(actualData.values.isNotEmpty() || forecastedData.values.isNotEmpty()
-                    || expectedData.values.isNotEmpty()) {
-                    ForecastChart.createForecastChart(
-                        context,
-                        combinedChart,
-                        expectedData,
-                        actualData,
-                        forecastedData,
-                        endDateData,
-                        unit,
-                        dateFormat,
-                        decimalFormat,
-                        zoomEnabled
-                    )
-                }
+            if(actualData.values.isNotEmpty() || forecastedData.values.isNotEmpty()
+                || expectedData.values.isNotEmpty()) {
+                ForecastChart.createForecastChart(
+                    context,
+                    combinedChart,
+                    expectedData,
+                    actualData,
+                    forecastedData,
+                    endDateData,
+                    unit,
+                    dateFormat,
+                    decimalFormat,
+                    zoomEnabled
+                )
             }
         }
     }
@@ -174,6 +159,8 @@ class ForecastChartComponent(context: Context) : LinearLayout(context), Anvil.Re
     fun actualLine(arrayData: ArrayList<Entry>, label: String,
                    color: Int, forecasted: Boolean = false){
         this.actualData = Line(arrayData, label, color, forecasted)
+        render()
+        combinedChart?.invalidate()
     }
 
     fun forecastedLine(arrayData: ArrayList<Entry>, label: String,

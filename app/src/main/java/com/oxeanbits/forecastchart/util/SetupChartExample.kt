@@ -4,8 +4,7 @@ import android.graphics.Color
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.utils.ColorTemplate
-import com.oxeanbits.forecastchart.core.model.Line
-import com.oxeanbits.forecastchart.core.util.DateFormatter
+import com.oxeanbits.forecastchart.model.Line
 import java.text.DecimalFormat
 
 object SetupChartExample{

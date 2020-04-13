@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.core.ui.marker
+package com.oxeanbits.forecastchart.ui.marker
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,7 +8,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.MPPointF
 import com.oxeanbits.forecastchart.core.R
-import com.oxeanbits.forecastchart.core.util.DateFormatter
+import com.oxeanbits.forecastchart.util.DateFormatter
 import java.text.DecimalFormat
 
 @SuppressLint("ViewConstructor")

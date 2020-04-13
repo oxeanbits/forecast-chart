@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.oxeanbits.forecastchart.core.ui.component.forecastChartComponent
+import com.oxeanbits.forecastchart.ui.component.forecastChartComponent
 import com.oxeanbits.forecastchart.util.SetupChartExample
 import trikita.anvil.BaseDSL.MATCH
 import trikita.anvil.BaseDSL.size

@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.core.ui.anvil
+package com.oxeanbits.forecastchart.ui.anvil
 
 import android.content.Context
 import android.widget.LinearLayout
