@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.core.ui.anvil
+package com.oxeanbits.forecastchart.ui.anvil
 
 interface RenderListener {
     fun render()
