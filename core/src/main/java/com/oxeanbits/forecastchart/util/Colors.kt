@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.core.util
+package com.oxeanbits.forecastchart.util
 
 import android.graphics.Color
 

@@ -1,15 +1,15 @@
-package com.oxeanbits.forecastchart.core.ui.component
+package com.oxeanbits.forecastchart.ui.component
 
 import android.content.Context
 import android.graphics.Typeface.BOLD
 import com.github.mikephil.charting.charts.CombinedChart
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
-import com.oxeanbits.forecastchart.core.model.Line
-import com.oxeanbits.forecastchart.core.ui.anvil.LinearLayoutComponent
-import com.oxeanbits.forecastchart.core.util.Colors
-import com.oxeanbits.forecastchart.core.util.DateFormatter.DEFAULT_DATE_FORMAT
-import com.oxeanbits.forecastchart.core.util.ForecastChart
+import com.oxeanbits.forecastchart.model.Line
+import com.oxeanbits.forecastchart.ui.anvil.LinearLayoutComponent
+import com.oxeanbits.forecastchart.util.Colors
+import com.oxeanbits.forecastchart.util.DateFormatter.DEFAULT_DATE_FORMAT
+import com.oxeanbits.forecastchart.util.ForecastChart
 import trikita.anvil.Anvil.currentView
 import trikita.anvil.BaseDSL.MATCH
 import trikita.anvil.BaseDSL.WRAP
@@ -42,7 +42,7 @@ class ForecastChartComponent(context: Context) : LinearLayoutComponent(context) 
     private var detailsEnable: Boolean = false
 
     override fun view() {
-        size(MATCH, MATCH)
+        size(MATCH, WRAP)
         orientation(VERTICAL)
 
         if(detailsEnable) {

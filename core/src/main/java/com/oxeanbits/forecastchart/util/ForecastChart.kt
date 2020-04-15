@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.core.util
+package com.oxeanbits.forecastchart.util
 
 import android.content.Context
 import android.graphics.Color
@@ -7,11 +7,11 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.CombinedData
 import com.github.mikephil.charting.data.LineData
-import com.oxeanbits.forecastchart.core.model.Bar
-import com.oxeanbits.forecastchart.core.model.Line
-import com.oxeanbits.forecastchart.core.util.SetupChart.configChart
-import com.oxeanbits.forecastchart.core.util.SetupChart.setupEndBarDataSet
-import com.oxeanbits.forecastchart.core.util.SetupChart.setupLineDataSet
+import com.oxeanbits.forecastchart.model.Bar
+import com.oxeanbits.forecastchart.model.Line
+import com.oxeanbits.forecastchart.util.SetupChart.configChart
+import com.oxeanbits.forecastchart.util.SetupChart.setupEndBarDataSet
+import com.oxeanbits.forecastchart.util.SetupChart.setupLineDataSet
 import java.text.DecimalFormat
 
 object ForecastChart{

@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.core.ui.component
+package com.oxeanbits.forecastchart.ui.component
 
 import android.view.View
 import trikita.anvil.Anvil
