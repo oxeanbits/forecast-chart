@@ -1,4 +1,4 @@
-package com.oxeanbits.forecastchart.ui.anvil
+package com.oxeanbits.forecastchart.core.ui.anvil
 
 import android.os.Handler
 import android.os.Looper
