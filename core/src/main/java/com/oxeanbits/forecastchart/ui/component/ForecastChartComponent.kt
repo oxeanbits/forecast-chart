@@ -42,6 +42,7 @@ class ForecastChartComponent(context: Context) : LinearLayoutComponent(context) 
     private var detailsEnable: Boolean = false
 
     override fun view() {
+        size(MATCH, WRAP)
         orientation(VERTICAL)
 
         if(detailsEnable) {
