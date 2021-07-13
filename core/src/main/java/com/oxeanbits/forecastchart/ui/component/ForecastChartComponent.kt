@@ -1,13 +1,19 @@
 package com.oxeanbits.forecastchart.ui.component
 
 import android.content.Context
+import android.graphics.Color.CYAN
+import android.graphics.Color.GRAY
+import android.graphics.Color.GREEN
+import android.graphics.Color.RED
 import android.graphics.Typeface.BOLD
+import androidx.core.content.ContextCompat.getColor
 import com.github.mikephil.charting.charts.CombinedChart
 import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.data.Entry
+import com.oxeanbits.forecastchart.core.R
+import com.oxeanbits.forecastchart.model.Bar
+import com.oxeanbits.forecastchart.model.ChartEntry
 import com.oxeanbits.forecastchart.model.Line
 import com.oxeanbits.forecastchart.ui.anvil.LinearLayoutComponent
-import com.oxeanbits.forecastchart.util.Colors
 import com.oxeanbits.forecastchart.util.DateFormatter.DEFAULT_DATE_FORMAT
 import com.oxeanbits.forecastchart.util.ForecastChart
 import trikita.anvil.Anvil.currentView
@@ -34,7 +40,7 @@ class ForecastChartComponent(context: Context) : LinearLayoutComponent(context) 
     private var expectedData: Line = emptyLine()
     private var actualData: Line? = null
     private var forecastedData: Line? = null
-    private var endDateData: BarEntry = emptyBar()
+    private var endDateData: Bar = emptyBar()
     private var unit: String = ""
     private var dateFormat: String = DEFAULT_DATE_FORMAT
     private var decimalFormat: DecimalFormat = DecimalFormat()
@@ -50,7 +56,7 @@ class ForecastChartComponent(context: Context) : LinearLayoutComponent(context) 
         renderChart()
     }
 
-    private fun renderDetailsLayout(){
+    private fun renderDetailsLayout() {
         linearLayout {
             size(WRAP, WRAP)
             orientation(HORIZONTAL)
@@ -76,7 +82,7 @@ class ForecastChartComponent(context: Context) : LinearLayoutComponent(context) 
                 if (expectedData.values.isNotEmpty()) {
                     renderChartDetails(expectedData)
                     renderDetailsLegend(expectedData.label)
-                }else if(forecastedData.values.isNotEmpty()){
+                } else if(forecastedData.values.isNotEmpty()){
                     renderChartDetails(forecastedData)
                     renderDetailsLegend(forecastedData.label)
                 }
@@ -85,31 +91,31 @@ class ForecastChartComponent(context: Context) : LinearLayoutComponent(context) 
     }
 
     private fun renderChartDetails(data: Line){
-        linearLayout{
+        linearLayout {
             size(WRAP, WRAP)
             orientation(HORIZONTAL)
             textView {
                 size(WRAP, WRAP)
                 val lastData = data.values[data.values.lastIndex].y
                 text(lastData.toString())
-                textColor(Colors.TEXT_DEFAULT_BLACK)
+                textColor(getColor(context, R.color.black))
                 textSize(28f)
                 typeface(null, BOLD)
             }
             textView {
                 size(WRAP, WRAP)
                 text(" $unit")
-                textColor(Colors.TEXT_DEFAULT_GRAY)
+                textColor(getColor(context, R.color.grey))
                 textSize(15f)
             }
         }
     }
 
     private fun renderDetailsLegend(label: String){
-        textView{
+        textView {
             size(WRAP, WRAP)
             text(label)
-            textColor(Colors.TEXT_DEFAULT_GRAY)
+            textColor(getColor(context, R.color.grey))
             textSize(15f)
         }
     }
@@ -143,52 +149,52 @@ class ForecastChartComponent(context: Context) : LinearLayoutComponent(context) 
         }
     }
 
-    private fun emptyLine(): Line{
-        return Line(arrayListOf(), "", 0, false)
+    private fun emptyLine(): Line {
+        return Line(listOf(), "", 0, false)
     }
 
-    private fun emptyBar(): BarEntry{
-        return BarEntry(-1f, 0f)
+    private fun emptyBar(): Bar {
+        return Bar(listOf(BarEntry(-1f, 0f)), "", RED)
     }
 
-    fun expectedLine(arrayData: ArrayList<Entry>, label: String,
-                     color: Int, forecasted: Boolean = false){
+    fun expectedLine(arrayData: List<ChartEntry>, label: String,
+                     color: Int = CYAN, forecasted: Boolean = false) {
         this.expectedData = Line(arrayData, label, color, forecasted)
     }
 
-    fun actualLine(arrayData: ArrayList<Entry>, label: String,
-                   color: Int, forecasted: Boolean = false){
+    fun actualLine(arrayData: List<ChartEntry>, label: String,
+                   color: Int = GREEN, forecasted: Boolean = false) {
         this.actualData = Line(arrayData, label, color, forecasted)
         render()
         combinedChart?.invalidate()
     }
 
-    fun forecastedLine(arrayData: ArrayList<Entry>, label: String,
-                       color: Int, forecasted: Boolean = true){
+    fun forecastedLine(arrayData: List<ChartEntry>, label: String,
+                       color: Int = GRAY, forecasted: Boolean = true) {
         this.forecastedData = Line(arrayData, label, color, forecasted)
     }
 
-    fun endDateBar(x: Float, y: Float){
-        this.endDateData = BarEntry(x, y)
+    fun endDateBar(x: Float, y: Float, label: String, color: Int = RED) {
+        this.endDateData = Bar(listOf(BarEntry(x, y)), label, color)
     }
 
-    fun unit(unit: String){
+    fun unit(unit: String) {
         this.unit = unit
     }
 
-    fun dateFormat(dateFormat: String){
+    fun dateFormat(dateFormat: String) {
         this.dateFormat = dateFormat
     }
 
-    fun decimalFormat(decimalFormat: DecimalFormat){
+    fun decimalFormat(decimalFormat: DecimalFormat) {
         this.decimalFormat = decimalFormat
     }
 
-    fun zoomEnabled(zoomEnabled: Boolean){
+    fun zoomEnabled(zoomEnabled: Boolean) {
         this.zoomEnabled = zoomEnabled
     }
 
-    fun detailsEnable(detailsEnable: Boolean){
+    fun detailsEnable(detailsEnable: Boolean) {
         this.detailsEnable = detailsEnable
     }
 }

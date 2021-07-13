@@ -11,24 +11,24 @@ import com.oxeanbits.forecastchart.model.Line
 import com.oxeanbits.forecastchart.ui.marker.ForecastMarkerView
 import java.text.DecimalFormat
 
-object SetupChart{
-    const val LINE_WIDTH = 2f
-    const val FILL_ALPHA = 45
-    const val LEGEND_SIZE = 15f
-    const val SIDE_OFFSET = 40f
+object SetupChart {
+    private const val LINE_WIDTH = 2f
+    private const val FILL_ALPHA = 45
+    private const val LEGEND_SIZE = 15f
+    private const val SIDE_OFFSET = 40f
 
     fun setupLineDataSet(line: Line): LineDataSet {
-        val lineDataSet = LineDataSet(line.values, line.label)
+        val lineDataSet = LineDataSet(line.valuesToEntry(), line.label)
         lineDataSet.color = line.color
         lineDataSet.lineWidth = LINE_WIDTH
         lineDataSet.setDrawCircles(false)
         lineDataSet.setDrawValues(false)
         lineDataSet.setDrawFilled(true)
 
-        if(line.forecasted ){
+        if(line.forecasted) {
             lineDataSet.enableDashedLine(10f, 10f, 0f)
             lineDataSet.fillAlpha = 0
-        }else{
+        } else {
             lineDataSet.fillColor = line.color
             lineDataSet.fillAlpha = FILL_ALPHA
         }
@@ -45,7 +45,7 @@ object SetupChart{
     }
 
     fun configChart(context: Context, combinedChart: CombinedChart, unit: String,
-                    dateFormat: String, decimalFormat: DecimalFormat, zoomEnabled: Boolean){
+                    dateFormat: String, decimalFormat: DecimalFormat, zoomEnabled: Boolean) {
         combinedChart.legend.form = Legend.LegendForm.LINE
         combinedChart.legend.xEntrySpace = LEGEND_SIZE
         combinedChart.legend.textSize = LEGEND_SIZE

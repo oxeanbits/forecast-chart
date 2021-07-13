@@ -41,7 +41,7 @@ class MainExample : AppCompatActivity() {
                             actualLine.color, actualLine.forecasted)
                         forecastedLine(forecastedLine.values, forecastedLine.label,
                             forecastedLine.color, forecastedLine.forecasted)
-                        endDateBar(endDateBar.x, endDateBar.y)
+                        endDateBar(endDateBar.x, endDateBar.y, "End Date")
                         unit("m³")
                         zoomEnabled(true)
                     }
@@ -52,7 +52,7 @@ class MainExample : AppCompatActivity() {
                             actualLine.color, actualLine.forecasted)
                         forecastedLine(forecastedLine.values, forecastedLine.label,
                             forecastedLine.color, forecastedLine.forecasted)
-                        endDateBar(endDateBar.x, endDateBar.y)
+                        endDateBar(endDateBar.x, endDateBar.y, "End Date")
                         unit("m³")
                         dateFormat("MM/dd/yyyy")
                         decimalFormat(SetupChartExample.getDecimalFormat())
