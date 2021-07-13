@@ -19,7 +19,7 @@ Step 2. Add the dependency
 
 ```gradle
 dependencies {
-    implementation 'com.github.oxeanbits.forecast-chart:2.0.1'
+    implementation 'com.github.oxeanbits.forecast-chart:3.1.3'
 }
 ```
 
@@ -30,9 +30,9 @@ dependencies {
 ## Basic usage
 
 ```kotlin
-expectedDataArray = arrayListOf(Entry(1f, 1f), Entry(2f, 2f), Entry(3f, 3f)
-actualDataArray = arrayListOf(Entry(1f, 1f), Entry(2f, 2f))
-forecastedDataArray = arrayListOf(Entry(2f, 2f), Entry(3f, 3f))
+expectedDataArray = listOf(ChartEntry(1f, 1f), ChartEntry(2f, 2f), ChartEntry(3f, 3f)
+actualDataArray = listOf(ChartEntry(1f, 1f), ChartEntry(2f, 2f))
+forecastedDataArray = listOf(ChartEntry(2f, 2f), ChartEntry(3f, 3f))
 
 forecastChartComponent{
     size(MATCH, 350)
