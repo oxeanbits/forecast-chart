@@ -19,7 +19,7 @@ Step 2. Add the dependency
 
 ```gradle
 dependencies {
-    implementation 'com.github.oxeanbits.forecast-chart:3.1.3'
+    implementation 'com.github.oxeanbits.forecast-chart:4.0.0'
 }
 ```
 
