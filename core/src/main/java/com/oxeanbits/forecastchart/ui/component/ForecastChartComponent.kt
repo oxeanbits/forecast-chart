@@ -154,7 +154,7 @@ class ForecastChartComponent(context: Context) : LinearLayoutComponent(context) 
     }
 
     private fun emptyBar(): Bar {
-        return Bar(listOf(BarEntry(-1f, 0f)), "", RED)
+        return Bar(listOf(), "", 0)
     }
 
     fun expectedLine(arrayData: List<ChartEntry>, label: String,
