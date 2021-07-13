@@ -58,6 +58,18 @@ class MainExample : AppCompatActivity() {
                         decimalFormat(SetupChartExample.getDecimalFormat())
                         detailsEnable(true)
                     }
+
+                    forecastChartComponent{
+                        size(MATCH, 350)
+                        expectedLine(expectedLine.values, expectedLine.label,
+                            expectedLine.color, expectedLine.forecasted)
+                        actualLine(actualLine.values, actualLine.label,
+                            actualLine.color, actualLine.forecasted)
+                        forecastedLine(forecastedLine.values, forecastedLine.label,
+                            forecastedLine.color, forecastedLine.forecasted)
+                        unit("m³")
+                        zoomEnabled(true)
+                    }
                 }
             }
         }
