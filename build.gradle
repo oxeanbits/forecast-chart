@@ -4,7 +4,7 @@ ext.groupName = GROUP
 ext.applicationName = APPLICATION
 
 buildscript {
-    ext.kotlin_version = '1.5.20'
+    ext.kotlin_version = '1.3.50'
     repositories {
         google()
         jcenter()
